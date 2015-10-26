@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#arg: shell, chef, ansible
+
 apt-get update
 apt-get upgrade -y
 
@@ -30,9 +32,16 @@ vagrant plugin install vagrant-vbguest
 
 
 #Repositorio
-git clone https://github.com/JoseVelasco142/vagrant_clone_boxes.git
+git clone https://github.com/JoseVelasco142/vagrant.git
 
 #creacion de maquina virtual
-cd vagrant_clone_boxes
-mkdir data
+if [ $1 = "shell" ]; then
+	cd vagrant/prov.shell
+elif [ $1 = "chef" ]; then
+	cd vagrant/prov.chef
+elif [ $1 = "ansible" ]; then
+	cd vagrant/prov.ansible
+fi
+
+mkdir DATA
 vagrant up
