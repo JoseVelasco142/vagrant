@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network "private_network", ip: "192.168.10.7"
+  config.vm.synced_folder "DATA", "/DATA"
+
+  config.vm.provider :virtualbox do |vb|
+	   vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+  VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('vagrant.json').read)
+
+  config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = ["cookbooks"]
+      chef.json = VAGRANT_JSON
+      chef.run_list = VAGRANT_JSON.delete('run_list')
+    end
+
+end

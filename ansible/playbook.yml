@@ -1,0 +1,22 @@
+---
+- hosts: all
+  sudo: true
+  tasks:
+  - name: add repository nodejs
+    apt_repository: repo='ppa:chris-lea/node.js'
+
+  - name: update repository
+    apt: update_cache=yes
+
+  - name: install nodejs
+    apt: pkg=nodejs update_cache=true
+
+  - name: install npm
+    apt: pkg=npm update_cache=true
+
+
+  - name: install express
+    command: npm install -g express
+
+  - name: install mongodb
+    npm: name=mongodb global=yes

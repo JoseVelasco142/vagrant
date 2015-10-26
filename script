@@ -1,0 +1,38 @@
+#!/bin/bash
+
+apt-get update
+apt-get upgrade -y
+
+#cabeceras
+apt-get install build-essential -y
+apt-get install linux-headers-$(uname -r) -y
+apt-get install -f -y
+
+#Virtualbox
+PKGNAME = "virtualbox-4.3_4.3.32-103443~Debian~wheezy_i386.deb";
+URL = "http://download.virtualbox.org/virtualbox/4.3.32/"$PKGNAME;
+
+wget $URL
+dpkg -i $PKGNAME;
+rm $PKGNAME
+apt-get install -f -y
+
+#Instalacion de GIT
+apt-get install git -y
+
+#Vagrant
+apt-get install vagrant -y
+gem update --system
+gem install rubygems-update
+update_rubygems 
+vagrant plugin install vagrant-vbguest
+/etc/init.d/vboxdrv setup
+
+
+#Repositorio
+git clone https://github.com/JoseVelasco142/vagrant_clone_boxes.git
+
+#creacion de maquina virtual
+cd vagrant_clone_boxes
+mkdir data
+vagrant up

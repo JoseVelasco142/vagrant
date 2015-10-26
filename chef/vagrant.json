@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "recipe[nodejs]",
+    "recipe[nodejs::npm]"
+  ],
+  "nodejs::npm":[
+    "express*latest"
+  ]
+}
