@@ -1,1 +1,0 @@
-{"virtualbox":{"/DATA":{"guestpath":"/DATA","hostpath":"/home/jose/Escritorio/vagrant/chef/DATA","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/jose/Escritorio/vagrant/chef","disabled":false},"v-csc-1":{"id":"v-csc-1","guestpath":"/tmp/vagrant-chef-3/chef-solo-1/cookbooks","hostpath":"/home/jose/Escritorio/vagrant/chef/cookbooks","disabled":false}}}
