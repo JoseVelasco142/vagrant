@@ -1,9 +1,17 @@
 {
-  "run_list": [
+  "run_list" : [
     "recipe[nodejs]",
-    "recipe[nodejs::npm]"
+    "recipe[nodejs::npm]",
+    "recipe[nodejs::npm_packages]"
   ],
-  "nodejs::npm":[
-    "express*latest"
-  ]
+  "nodejs": {
+    "npm_packages": [
+      { "name": "express",
+        "version": "latest"
+      },
+      { "name": "mongodb",
+        "version": "latest"
+      }
+    ]
+  }
 }
